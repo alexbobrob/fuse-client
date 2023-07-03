@@ -2,7 +2,11 @@ import React from "react";
 import { ReactComponent as FuseLogo } from "../../assets/svgs/fuseLogo.svg";
 import Stepper from "../common/Stepper";
 
-function SignupStep2({ setStep }: { setStep: any }) {
+interface Props {
+  setStep:React.Dispatch<React.SetStateAction<number>>
+}
+
+function SignupStep2({ setStep }: Props) {
   const handleNext = () => {
     setStep(3);
   };

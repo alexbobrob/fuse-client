@@ -5,15 +5,16 @@ import SignupStep3 from '../components/signup/SignupStep3';
 
 function SignupForm() {
   const [step, setStep] = useState(1)
+  const [data, setData] = useState({ email:'', password:''})
 
   const renderSteps = () => {
     switch(step){
       case 1:
-        return (<SignupStep1 setStep={setStep}/>)
+        return (<SignupStep1 setStep={setStep} setData={setData} />)
       case 2:
-        return (<SignupStep2 setStep={setStep}/>)
+        return (<SignupStep2 setStep={setStep} />)
       case 3:
-        return (<SignupStep3 />)
+        return (<SignupStep3 data={data}/>)
     }
   }
 
