@@ -2,15 +2,24 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {ReactComponent as FuseLogo} from '../assets/svgs/fuseLogo.svg';
 import {ReactComponent as GoogleLogo} from '../assets/svgs/google.svg';
+import { signin } from '../services/authService';
 
 function LoginForm() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const [error, setError] = useState('')
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    navigate('/');
+    
+    try {
+      const resData = await await signin({email, password})
+      if(resData)
+        navigate('/')
+    } catch (error) {
+        if(error instanceof Error)
+          setError(error.message)
+      }
   };
 
   return (
@@ -43,6 +52,7 @@ function LoginForm() {
           />
         </div>
         <h6 className='text-sm font-bold'>Forgot your password?</h6>
+        {error && <p className='text-cs-red'>{error}</p>}
         <button
           type="submit"
           className="mt-4 w-full bg-cs-orange text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"

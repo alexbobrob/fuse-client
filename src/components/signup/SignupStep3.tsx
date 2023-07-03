@@ -1,18 +1,28 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {ReactComponent as FuseLogo} from '../../assets/svgs/fuseLogo.svg';
 import Stepper from '../common/Stepper';
+import { SignupData, signup } from '../../services/authService';
 
-function SignupStep3() {
+function SignupStep3({data}:{data:SignupData}) {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [typeCompany, setTypeCompany] = useState('');
+  const [companyType, setCompanyType] = useState('');
+  const [error, setError] = useState('')
 
-
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    navigate('/')
+    const {email, password} = data;
+    const fullName = firstName+' '+ lastName
+    try {
+      const resData = await signup({fullName, email, password, companyType})
+      if(resData)
+        navigate('/')
+    } catch (error) {
+        if(error instanceof Error)
+          setError(error.message)
+    }
   };
 
   return (
@@ -49,13 +59,14 @@ function SignupStep3() {
           <input
             type="text"
             id="typeCompany"
-            value={typeCompany}
-            onChange={(e)=>setTypeCompany(e.target.value)}
+            value={companyType}
+            onChange={(e)=>setCompanyType(e.target.value)}
             placeholder="Type Company Name or None..."
             className="appearance-none border border-black rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             required
           />
         </div>
+        {error && <p className='text-cs-red'>{error}</p>}
         <button
           type="submit"
           className="mt-10 w-full bg-cs-orange text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"

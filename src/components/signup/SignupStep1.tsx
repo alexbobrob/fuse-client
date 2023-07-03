@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import {ReactComponent as FuseLogo} from '../../assets/svgs/fuseLogo.svg';
 import {ReactComponent as GoogleLogo} from '../../assets/svgs/google.svg';
 import Stepper from '../common/Stepper';
 
-function SignupStep1({setStep}:{setStep:any}) {
+interface Props {
+  setData: React.Dispatch<React.SetStateAction<{
+    email: string;
+    password: string;
+  }>>
+  setStep:React.Dispatch<React.SetStateAction<number>>
+}
+
+function SignupStep1({setStep, setData}:Props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
-
-  const handleNext = () => {
-    setStep(2)
+  const [error, setError] = useState('')
+  const handleNext = (e: FormEvent) => {
+    e.preventDefault()
+    setError('')
+    if(password!==rePassword)
+      return setError('Passwords do not match')
+    if(!error)
+    {
+      setStep(2)
+      setData((prev)=>({...prev, email, password}))
+    }
   };
 
   return (
@@ -53,8 +69,9 @@ function SignupStep1({setStep}:{setStep:any}) {
             required
           />
         </div>
+        {error && <p className='text-cs-red'>{error}</p>}
         <button
-          onClick={handleNext}
+          type='submit'
           className="mt-4 w-full bg-cs-orange text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
         >
           Next
