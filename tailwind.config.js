@@ -5,8 +5,14 @@ module.exports = {
     extend: {
       colors: {
         'cs-light-gray': '#D9D9D9',
+        'cs-gray': '#5C5656',
+        'cs-dark-gray':'#1E1E1E',
+        'cs-body-gray':'#323232',
         'cs-orange': '#FE6100',
-        'cs-red': 'red'
+        'cs-light-orange':'#F47D00',
+        'cs-red': 'red',
+        'cs-flushed': '#DD5050',
+        'cs-green': '#46F157'
       },
       screens: {
         xs: '520px',
