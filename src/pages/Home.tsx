@@ -1,18 +1,24 @@
 import React from 'react'
 import Profile from '../components/profile'
+import Navbar from '../components/navbar'
+import SideBar from '../components/sidebar'
 
 const Home = () => {
   return (
     <div className='bg-cs-body-gray h-screen py-[5%] text-white'>
       <div className='bg-cs-dark-gray mx-[2%] h-full'>
-        <div className='mx-[15%] py-[8%]'>
+        <div className='mx-[15%] pt-[5%]'>
           <div className='flex'>
-            <div className='w-[20%] bg-cs-gray mr-2'>
+            <div className='w-[20%] mr-2'>
+              <SideBar />
             </div>
             <div className='w-[80%]'>
-              <div className='flex justify-end mb-4 bg-cs-gray h-10'>
+              <div className='mb-4'>
+                <Navbar />
               </div>
-              <Profile />
+              <div className='pl-2'>
+                <Profile />
+              </div>
             </div>
           </div>
         </div>
