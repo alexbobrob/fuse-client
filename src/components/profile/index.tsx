@@ -5,39 +5,13 @@ import locationIcon from "../../assets/svgs/locationIcon.svg";
 import addFriendIcon from "../../assets/svgs/addFriendIcon.svg";
 import editIcon from "../../assets/svgs/editIcon.svg";
 import heartIcon from "../../assets/svgs/heartIcon.svg";
+import { renderProfilePicture } from "../common/RenderProfilePicture";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("posts");
   const user = {
     picture: "",
     name: "Terry Hamlet",
-  };
-
-  const renderProfilePicture = (dimentions: number) => {
-    if (user.picture) {
-      return (
-        <img
-          src={user.picture}
-          alt="Profile"
-          width={dimentions}
-          height={dimentions}
-          className="rounded-full"
-        />
-      );
-    } else {
-      const initials = user.name
-        .split(" ")
-        .map((word) => word[0])
-        .join("");
-      return (
-        <div
-          className="rounded-full bg-gray-500 flex items-center justify-center"
-          style={{ width: dimentions, height: dimentions }}
-        >
-          {initials}
-        </div>
-      );
-    }
   };
 
   const renderTabs = () => {

@@ -18,7 +18,7 @@ function SignupStep3({data}:{data:SignupData}) {
     try {
       const resData = await signup({fullName, email, password, companyType})
       if(resData)
-        navigate('/')
+        navigate('/login')
     } catch (error) {
         if(error instanceof Error)
           setError(error.message)
