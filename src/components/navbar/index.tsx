@@ -9,11 +9,11 @@ import arrowDownIcon from "../../assets/svgs/arrowDownIcon.svg";
 import { renderProfilePicture } from '../common/RenderProfilePicture';
 
 const Navbar
- = () => {
+ = ({setIsOpen}:{setIsOpen: React.Dispatch<React.SetStateAction<boolean>>}) => {
   return (
     <div className='flex pb-6 border border-b-2 border-t-0 border-l-0 border-r-0 border-cs-gray'>
         <div className='flex justify-between h-fit w-[50%]'>
-            <img src={plusIcon} alt="Add Friend" className="mr-1 cursor-pointer"/>
+            <img src={plusIcon} alt="Add Friend" className="mr-1 cursor-pointer" onClick={()=>setIsOpen(true)}/>
             <img src={searchIcon} alt="Add Friend" className="mr-1 cursor-pointer"/>
         </div>
         <div className='flex items-center justify-between w-[50%] pl-4'>
