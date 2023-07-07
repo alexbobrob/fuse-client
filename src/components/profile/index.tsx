@@ -9,10 +9,9 @@ import { renderProfilePicture } from "../common/RenderProfilePicture";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("posts");
-  const user = {
-    picture: "",
-    name: "Terry Hamlet",
-  };
+ 
+  const user = JSON.parse(localStorage.getItem('user') as string)
+
 
   const renderTabs = () => {
     return (
@@ -47,7 +46,7 @@ const Profile = () => {
       <div className="flex justify-between">
         <div className="flex w-[50%] justify-between">
           <div className="flex flex-col items-center">
-            {renderProfilePicture(45)}
+            {renderProfilePicture(45, user)}
             <div className="flex items-center justify-between mt-1">
               <div className="rounded-full w-[10px] h-[10px] bg-cs-green flex items-center justify-center"></div>
               <div className="ml-1 text-[12px]">Available</div>
@@ -55,8 +54,8 @@ const Profile = () => {
           </div>
           <div className="pr-[100px] pl-10">
             <div className="flex items-center">
-              <p className="font-bold text-[14px] text-cs-flushed">
-                {user.name}
+              <p className="font-bold text-[14px] text-cs-flushed capitalize">
+                {user.fullName}
               </p>
               <div className="mx-2">
                 <img src={addFriendIcon} alt="Add Friend" className="cursor-pointer"/>
@@ -88,9 +87,9 @@ const Profile = () => {
       </div>
       {renderTabs()}
       <div className="flex mt-8 w-[80%]">
-        <div className="mr-2 mt-[-8px]">{renderProfilePicture(35)}</div>
+        <div className="mr-2 mt-[-8px]">{renderProfilePicture(35, user)}</div>
         <div className="mr-8">
-          <p className="font-bold text-[14px] text-cs-flushed">{user.name}</p>
+          <p className="font-bold text-[14px] text-cs-flushed capitalize">{user.fullName}</p>
           <p className="text-[14px] ml-2">
             Hello World! This is my first ever post on the fuse platform! Happy
             to be here!

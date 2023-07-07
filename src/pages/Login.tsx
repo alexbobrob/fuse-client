@@ -13,7 +13,7 @@ function LoginForm() {
     e.preventDefault();
     
     try {
-      const resData = await await signin({email, password})
+      const resData = await signin({email, password})
       if(resData)
         navigate('/')
     } catch (error) {
