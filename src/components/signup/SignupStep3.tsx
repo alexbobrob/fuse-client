@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {ReactComponent as FuseLogo} from '../../assets/svgs/fuseLogo.svg';
 import Stepper from '../common/Stepper';
-import { SignupData, signup } from '../../services/authService';
+import { UserData, signup } from '../../services/authService';
 
-function SignupStep3({data}:{data:SignupData}) {
+function SignupStep3({data}:{data:UserData}) {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');

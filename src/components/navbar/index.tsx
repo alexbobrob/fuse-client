@@ -10,6 +10,8 @@ import { renderProfilePicture } from '../common/RenderProfilePicture';
 
 const Navbar
  = ({setIsOpen}:{setIsOpen: React.Dispatch<React.SetStateAction<boolean>>}) => {
+    const user = JSON.parse(localStorage.getItem('user') as string)
+
   return (
     <div className='flex pb-6 border border-b-2 border-t-0 border-l-0 border-r-0 border-cs-gray'>
         <div className='flex justify-between h-fit w-[50%]'>
@@ -33,8 +35,8 @@ const Navbar
                 </div>
             </div>
             <div className='flex flex-col items-center'>
-                {renderProfilePicture(40)}
-                <p className='text-[12px] mt-2'>WELCOME, TERRY</p>
+                {renderProfilePicture(40, user)}
+                <p className='text-[12px] mt-2'>WELCOME, {user.fullName.split(" ")[0].toUpperCase()}</p>
             </div>
             <div className='flex flex-col'>
                 <img src={menuIcon} alt="Add Friend" className="cursor-pointer"/>
