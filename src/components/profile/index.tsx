@@ -1,40 +1,46 @@
-import React, { useState } from "react";
-import expandIcon from "../../assets/svgs/expandIcon.svg";
-import closeIcon from "../../assets/svgs/closeIcon.svg";
-import locationIcon from "../../assets/svgs/locationIcon.svg";
-import addFriendIcon from "../../assets/svgs/addFriendIcon.svg";
-import editIcon from "../../assets/svgs/editIcon.svg";
-import heartIcon from "../../assets/svgs/heartIcon.svg";
-import { renderProfilePicture } from "../common/RenderProfilePicture";
+import React, { useState } from 'react';
+import expandIcon from '../../assets/svgs/expandIcon.svg';
+import closeIcon from '../../assets/svgs/closeIcon.svg';
+import locationIcon from '../../assets/svgs/locationIcon.svg';
+import addFriendIcon from '../../assets/svgs/addFriendIcon.svg';
+import editIcon from '../../assets/svgs/editIcon.svg';
+import heartIcon from '../../assets/svgs/heartIcon.svg';
+import { renderProfilePicture } from '../common/RenderProfilePicture';
 
-const Profile = () => {
-  const [activeTab, setActiveTab] = useState("posts");
+const Profile = (): JSX.Element => {
+  const [activeTab, setActiveTab] = useState('posts');
   const user = {
-    picture: "",
-    name: "Terry Hamlet",
+    picture: '',
+    name: 'Terry Hamlet',
   };
 
-  const renderTabs = () => {
+  const renderTabs = (): JSX.Element => {
     return (
       <div className="flex justify-center w-[42%] mt-8 p-1 border border-cs-gray border-r-0 border-l-0">
         <p
           className="text-[12px] cursor-pointer"
-          style={{ color: activeTab === "posts" ? "#F47D00" : "" }}
-          onClick={() => setActiveTab("posts")}
+          style={{ color: activeTab === 'posts' ? '#F47D00' : '' }}
+          onClick={() => {
+            setActiveTab('posts');
+          }}
         >
           POSTS
         </p>
         <p
           className="text-[12px] mx-3 px-3 border border-t-0 border-b-0 cursor-pointer"
-          style={{ color: activeTab === "threads" ? "#F47D00" : "" }}
-          onClick={() => setActiveTab("threads")}
+          style={{ color: activeTab === 'threads' ? '#F47D00' : '' }}
+          onClick={() => {
+            setActiveTab('threads');
+          }}
         >
           THREADS
         </p>
         <p
           className="text-[12px] cursor-pointer"
-          style={{ color: activeTab === "tags" ? "#F47D00" : "" }}
-          onClick={() => setActiveTab("tags")}
+          style={{ color: activeTab === 'tags' ? '#F47D00' : '' }}
+          onClick={() => {
+            setActiveTab('tags');
+          }}
         >
           TAGS
         </p>
@@ -59,10 +65,14 @@ const Profile = () => {
                 {user.name}
               </p>
               <div className="mx-2">
-                <img src={addFriendIcon} alt="Add Friend" className="cursor-pointer"/>
+                <img
+                  src={addFriendIcon}
+                  alt="Add Friend"
+                  className="cursor-pointer"
+                />
               </div>
               <div>
-                <img src={editIcon} alt="Edit" className="cursor-pointer"/>
+                <img src={editIcon} alt="Edit" className="cursor-pointer" />
               </div>
             </div>
             <div className="text-[12px]">SVP, Property Fac Broker Aon Re</div>
@@ -80,9 +90,13 @@ const Profile = () => {
             </div>
           </div>
           <div className="flex h-[20px]">
-            <img src={locationIcon} alt="Add Friend" className="cursor-pointer"/>
-            <img src={expandIcon} alt="Add Friend" className="cursor-pointer"/>
-            <img src={closeIcon} alt="Add Friend" className="cursor-pointer"/>
+            <img
+              src={locationIcon}
+              alt="Add Friend"
+              className="cursor-pointer"
+            />
+            <img src={expandIcon} alt="Add Friend" className="cursor-pointer" />
+            <img src={closeIcon} alt="Add Friend" className="cursor-pointer" />
           </div>
         </div>
       </div>
@@ -96,8 +110,12 @@ const Profile = () => {
             to be here!
           </p>
           <div className="flex mt-1">
-            <img src={heartIcon} alt="Add Friend" className="mr-1 cursor-pointer"/>
-            <img src={closeIcon} alt="Add Friend" className="cursor-pointer"/>
+            <img
+              src={heartIcon}
+              alt="Add Friend"
+              className="mr-1 cursor-pointer"
+            />
+            <img src={closeIcon} alt="Add Friend" className="cursor-pointer" />
           </div>
         </div>
         <div className="font-bold text-[10px] text-cs-gray">20m</div>

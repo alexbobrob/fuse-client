@@ -1,13 +1,13 @@
-import React from "react";
-import { ReactComponent as FuseLogo } from "../../assets/svgs/fuseLogo.svg";
-import Stepper from "../common/Stepper";
+import React from 'react';
+import { ReactComponent as FuseLogo } from '../../assets/svgs/fuseLogo.svg';
+import Stepper from '../common/Stepper';
 
 interface Props {
-  setStep:React.Dispatch<React.SetStateAction<number>>
+  setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function SignupStep2({ setStep }: Props) {
-  const handleNext = () => {
+const SignupStep2 = ({ setStep }: Props): JSX.Element => {
+  const handleNext = (): void => {
     setStep(3);
   };
 
@@ -29,6 +29,6 @@ function SignupStep2({ setStep }: Props) {
       </button>
     </div>
   );
-}
+};
 
 export default SignupStep2;
