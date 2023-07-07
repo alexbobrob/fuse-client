@@ -32,8 +32,8 @@ const OneToOneChat = () => {
                 setselectedChat(chat);
               }}
             >
-              {renderProfilePicture(20, chat.users[1])}
-              <p className="ml-2 text-[14px]">{chat.users[1].fullName}</p>
+              {chat.users.length>0&&renderProfilePicture(20, chat.users[1])}
+              <p className="ml-2 text-[14px]">{chat.users[1]?.fullName}</p>
             </div>
           ))}
           {isOpen && <Chatbox setIsOpen={setIsOpen} chat={selectedChat} />}
