@@ -36,7 +36,7 @@ const OneToOneChat = () => {
               <p className="ml-2 text-[14px]">{chat.users[1]?.fullName}</p>
             </div>
           ))}
-          {isOpen && <Chatbox setIsOpen={setIsOpen} chat={selectedChat} />}
+          {isOpen && <Chatbox setIsOpen={setIsOpen} selectedChat={selectedChat} />}
         </div>
       )}
     </>

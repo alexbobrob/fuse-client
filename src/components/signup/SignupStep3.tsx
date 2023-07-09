@@ -27,12 +27,12 @@ function SignupStep3({data}:{data:UserData}) {
 
   return (
     <div className="flex justify-center items-center h-screen bg-cs-light-gray flex-col">
-      <form className="rounded px-8 pt-6 pb-8 w-[120%]" onSubmit={handleSubmit}>
-        <div className="flex flex-col items-center">
+        <div className="w-[350px] flex flex-col items-center">
         <FuseLogo />
           <h2 className="text-4xl font-bold mb-6">sign up</h2>
           <Stepper step={3}/>
         </div>
+      <form className="w-[350px] rounded px-8 pt-2 pb-8 w-[120%]" onSubmit={handleSubmit}>
         <div className="mb-1">
           <input
             type="text"

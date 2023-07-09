@@ -12,23 +12,26 @@ function LoginForm() {
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     
+    if(password.length<5)
+      return setError("Password must be at least 5 characters long")
     try {
       const resData = await signin({email, password})
       if(resData)
         navigate('/')
     } catch (error) {
+      console.log(error)
         if(error instanceof Error)
-          setError(error.message)
+          setError(error.message ||'Something went wrong')
       }
   };
 
   return (
     <div className="flex justify-center items-center h-screen bg-cs-light-gray flex-col">
-      <form className="rounded px-8 pt-6 pb-8" onSubmit={handleSubmit}>
         <div className="flex flex-col items-center">
         <FuseLogo />
           <h2 className="text-4xl font-bold mb-6">welcome to fuse</h2>
         </div>
+      <form className="rounded px-8 pt-2 pb-8 w-[350px]" onSubmit={handleSubmit}>
         <div className="mb-1">
           <input
             type="email"

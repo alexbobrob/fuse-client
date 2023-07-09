@@ -6,10 +6,10 @@ import { ChatData, initializeChat } from "../../services/chatService";
 
 const SearchUsers = ({
   setSelectedUser,
-  handleFetchMessages
+  setCurrentChat
 }: {
   setSelectedUser: React.Dispatch<React.SetStateAction<UserData>>
-  handleFetchMessages: () => void
+  setCurrentChat: React.Dispatch<any>
 }) => {
   const [userName, setUserName] = useState("");
   const [users, setUsers] = useState([]);
@@ -50,6 +50,8 @@ const SearchUsers = ({
     }
     try {
       const res = await initializeChat(data)
+      if(res)
+        setCurrentChat(res[0])
     } catch (error) {
       console.log(error)
     }
@@ -67,14 +69,14 @@ const SearchUsers = ({
       {users.length > 0 && userName.length > 0 && (
         <div className="w-[250px] p-2 absolute top-10 left-7 bg-cs-gray space-y-2">
           {users.map((user: UserData, i) => (
-            <div
+            user._id!==loggedInUser.id?<div
               key={i}
               className="flex cursor-pointer hover:bg-cs-dark-gray p-2"
               onClick={() => handleInitializeChat(user)}
             >
               {renderProfilePicture(25, user)}
               <p className="ml-2 font-bold">{user.fullName}</p>
-            </div>
+            </div>:'No users found'
           ))}
         </div>
       )}
