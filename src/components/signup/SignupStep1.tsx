@@ -19,6 +19,8 @@ function SignupStep1({setStep, setData}:Props) {
   const handleNext = (e: FormEvent) => {
     e.preventDefault()
     setError('')
+    if(password.length<5)
+      return setError("Password must be at least 5 characters long")
     if(password!==rePassword)
       return setError('Passwords do not match')
     if(!error)
@@ -30,12 +32,12 @@ function SignupStep1({setStep, setData}:Props) {
 
   return (
     <div className="flex justify-center items-center h-screen bg-cs-light-gray flex-col">
-      <form className="rounded px-8 pt-6 pb-8 w-[80%]" onSubmit={handleNext}>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center w-[350px]">
         <FuseLogo />
           <h2 className="text-4xl font-bold mb-6">sign up</h2>
           <Stepper step={1}/>
         </div>
+      <form className="w-[350px] rounded px-8 pt-2 pb-8 w-[80%]" onSubmit={handleNext}>
         <div className="mb-1">
           <input
             type="email"
