@@ -119,7 +119,7 @@ const Chatbox = ({
             />
           ) : (
             <div className="flex items-center">
-              {renderProfilePicture(35, currentChat && currentChat?.users[1] || selectedUser)}
+              {renderProfilePicture(35, currentChat && currentChat.users[1]._id === loggedInUser.id ? currentChat && currentChat?.users[0]: currentChat && currentChat?.users[1] || selectedUser)}
               <p className="font-bold text-[14px] ml-2 text-cs-flushed">
                 {currentChat && currentChat.users[1]._id === loggedInUser.id
                   ? currentChat && currentChat.users[0]?.fullName

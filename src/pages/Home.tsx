@@ -15,7 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     socket = io("http://localhost:4000");
-    socket.emit("setup", loggedInUser);
+    socket&&socket.emit("setup", loggedInUser);
     socket.on("connected", () => {
       console.log(`${loggedInUser.fullName} socket connected`);
     });

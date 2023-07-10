@@ -30,7 +30,7 @@ const OneToOneChat = ({ socket }: { socket: any }) => {
               onClick={() => {
                 setIsOpen(true);
                 setselectedChat(chat);
-                socket.emit("join chat", loggedInUser.fullName, chat._id);
+                socket&&socket.emit("join chat", loggedInUser.fullName, chat._id);
               }}
             >
               {chat.users.length > 0 &&
