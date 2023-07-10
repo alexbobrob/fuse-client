@@ -3,7 +3,7 @@ import rightArrowIcon from "../../assets/svgs/rightArrowIcon.svg";
 import arrowDownIcon from "../../assets/svgs/arrowDownIcon.svg";
 import OneToOneChat from "./OneToOneChat";
 
-const Threads = () => {
+const Threads = ({ socket }: { socket: any }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [toggleOneToOneChat, setToggleOneToOneChat] = useState(false);
 
@@ -47,7 +47,7 @@ const Threads = () => {
             />
             <p className="text-[15px]">1:1 chats</p>
           </div>
-          {toggleOneToOneChat && <OneToOneChat />}
+          {toggleOneToOneChat && <OneToOneChat socket={socket} />}
           <div className="flex mt-2">
             <img
               src={rightArrowIcon}
