@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { fetchChats, fetchMessages } from "../../services/chatService";
+import { fetchChats } from "../../services/chatService";
 import { UserData } from "../../services/authService";
 import { renderProfilePicture } from "../common/RenderProfilePicture";
 import Chatbox from "../chatBox";
 
-const OneToOneChat = () => {
+const OneToOneChat = ({ socket }: { socket: any }) => {
   const [oneToOneChats, setOneToOneChats] = useState([]);
   const loggedInUser = JSON.parse(localStorage.getItem("user") as string);
   const [isOpen, setIsOpen] = useState(false);
@@ -30,13 +30,30 @@ const OneToOneChat = () => {
               onClick={() => {
                 setIsOpen(true);
                 setselectedChat(chat);
+                socket.emit("join chat", loggedInUser.fullName, chat._id);
               }}
             >
-              {chat.users.length>0&&renderProfilePicture(20, chat.users[1])}
-              <p className="ml-2 text-[14px]">{chat.users[1]?.fullName}</p>
+              {chat.users.length > 0 &&
+                renderProfilePicture(
+                  20,
+                  chat.users[1]._id === loggedInUser.id
+                    ? chat.users[0]
+                    : chat.users[1]
+                )}
+              <p className="ml-2 text-[14px]">
+                {chat.users[1]._id === loggedInUser.id
+                  ? chat.users[0]?.fullName
+                  : chat.users[1]?.fullName}
+              </p>
             </div>
           ))}
-          {isOpen && <Chatbox setIsOpen={setIsOpen} selectedChat={selectedChat} />}
+          {isOpen && (
+            <Chatbox
+              socket={socket}
+              setIsOpen={setIsOpen}
+              selectedChat={selectedChat}
+            />
+          )}
         </div>
       )}
     </>
